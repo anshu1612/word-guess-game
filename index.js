@@ -2,6 +2,8 @@ const words = ["APPLE", "GRAPE", "MANGO", "PEACH", "GUAVA"];
 const missingIndex = [0, 2, 4];
 const boxes = document.querySelectorAll(".box");
 const btn = document.getElementById("btn");
+let wrong = document.getElementById("wrongGuess");
+let lifeline = document.getElementById("lifeline");
 
 let wordIndex = Math.floor(Math.random() * 5);
 let word = words[wordIndex];
@@ -27,8 +29,16 @@ boxes.forEach((box, i) => {
 let i = 0;
 btn.addEventListener("click", () => {
   let ans = document.getElementById("letter").value.toUpperCase();
-  if (ans == charArray[missingIndex[i]]) {
-    boxes[missingIndex[i]].textContent = ans;
-    i += 1;
+  if (lifeline.textContent > 0) {
+    if (ans == charArray[missingIndex[i]] && i<missingIndex.length) {
+      boxes[missingIndex[i]].textContent = ans;
+      i += 1;
+    } else {
+      lifeline.textContent = Number(lifeline.textContent) - 1;
+      wrong.textContent = wrong.textContent + " " + ans;
+    }
+  }
+  else{
+    
   }
 });
