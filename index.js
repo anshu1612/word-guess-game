@@ -6,8 +6,10 @@ let wrong = document.getElementById("wrongGuess");
 let lifeline = document.getElementById("lifeline");
 const gameOver = document.getElementById("gameOver");
 const win = document.getElementById("win");
+const error = document.getElementById("error");
 const closeBtn = document.getElementById("closeBtn");
 const winCloseBtn = document.getElementById("closeBtn2");
+const errCloseBtn = document.getElementById("closeBtn3");
 
 let wordIndex = Math.floor(Math.random() * 5);
 let word = words[wordIndex];
@@ -34,30 +36,37 @@ let i = 0;
 okBtn.addEventListener("click", () => {
   let ans = document.getElementById("letter").value.toUpperCase();
   let lives = lifeline.textContent;
-  if (lives > 0) {
-    if (ans == charArray[missingIndex[i]] && i < missingIndex.length) {
-      boxes[missingIndex[i]].textContent = ans;
-      i += 1;
-      console.log(i);
-      if (i === missingIndex.length) {
-        console.log("win");
-        win.classList.remove("hidden");
-        document.body.classList.add("overflow-hidden");
-        document.getElementById("background").classList.add("blur");
-        okBtn.disabled = true;
+  if (ans == "") {
+    console.log("error");
+    error.classList.remove("hidden");
+    okBtn.disabled = true;
+  } else {
+    if (lives > 0) {
+      if (ans == charArray[missingIndex[i]] && i < missingIndex.length) {
+        boxes[missingIndex[i]].textContent = ans;
+        i += 1;
+        console.log(i);
+        if (i === missingIndex.length) {
+          console.log("win");
+          win.classList.remove("hidden");
+          document.body.classList.add("overflow-hidden");
+          document.getElementById("background").classList.add("blur");
+          okBtn.disabled = true;
+        }
+      } else {
+        lifeline.textContent = Number(lifeline.textContent) - 1;
+        wrong.textContent = wrong.textContent + " " + ans;
       }
-    } else {
-      lifeline.textContent = Number(lifeline.textContent) - 1;
-      wrong.textContent = wrong.textContent + " " + ans;
+    }
+    if (lives <= 1) {
+      gameOver.classList.remove("hidden");
+      document.body.classList.add("overflow-hidden");
+      document.getElementById("background").classList.add("blur");
+      okBtn.disabled = true;
     }
   }
-  if (lives <= 1) {
-    gameOver.classList.remove("hidden");
-    document.body.classList.add("overflow-hidden");
-    document.getElementById("background").classList.add("blur");
-    okBtn.disabled = true;
-  }
   document.getElementById("letter").value = "";
+  document.getElementById("letter").focus();
 });
 
 closeBtn.addEventListener("click", () => {
@@ -74,4 +83,10 @@ winCloseBtn.addEventListener("click", () => {
   document.getElementById("background").classList.remove("blur");
   okBtn.disabled = false;
   location.reload();
+});
+
+errCloseBtn.addEventListener("click", () => {
+  error.classList.add("hidden");
+  okBtn.disabled = false;
+  document.getElementById("letter").focus();
 });

@@ -7,10 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="">
-    <div class="relative flex flex-col justify-center items-center min-h-screen bg-pink-500">
+    <div
+      class="relative flex flex-col justify-center items-center min-h-screen bg-pink-500"
+    >
       <div
-      id="background"
-        class="bg-white/70 flex flex-col px-6 py-6 justify-center items-center  rounded-md sm:max-w-7xl"
+        id="background"
+        class="bg-white/70 flex flex-col px-6 py-6 justify-center items-center rounded-md sm:max-w-7xl"
       >
         <h1 class="font-extrabold text-pink-600 mb-7 text-2xl">
           Guess The Word!
@@ -36,20 +38,21 @@
             type="text"
             class="bg-white/0 w-11 my-7 border-b-2 outline-none border-b-pink-500 text-pink-600 font-bold text-xl"
             maxlength="1"
-            required
+            autofocus
           />
-          <button id="okBtn" class="bg-pink-600 text-white/70 h-8 w-8 rounded-full">
+          <button
+            id="okBtn"
+            class="bg-pink-600 text-white/70 h-8 w-8 rounded-full"
+          >
             <i class="fa-solid fa-check fa-sm" style="color: #ffffff"></i>
           </button>
         </div>
         <div class="grid grid-cols-2 gap-4 w-56">
           <div class="flex flex-col">
-            <label  class="text-pink-500 mb-4 text-xl font-bold"
+            <label class="text-pink-500 mb-4 text-xl font-bold"
               >Lifeline:
             </label>
-            <label  class="text-pink-500 text-xl font-bold"
-              >Wrong Guess:
-            </label>
+            <label class="text-pink-500 text-xl font-bold">Wrong Guess: </label>
           </div>
           <div>
             <p id="lifeline" class="text-pink-600 text-xl font-bold mb-4">10</p>
@@ -59,16 +62,51 @@
       </div>
 
       <div id="gameOver" class="hidden fixed top-52">
-        <div class="bg-pink-500 p-4 flex flex-col justify-center items-center rounded-md">
-          <h1 class="text-white/80 font-extrabold text-3xl mb-5">Game Over!!</h1>
-          <button id="closeBtn" class=" bg-white/80 font-bold text-pink-600 rounded-md px-2 ">Close</button>
+        <div
+          class="bg-pink-500 p-4 flex flex-col justify-center items-center rounded-md"
+        >
+          <h1 class="text-white/80 font-extrabold text-3xl mb-5">
+            Game Over!!
+          </h1>
+          <button
+            id="closeBtn"
+            class="bg-white/80 font-bold text-pink-600 rounded-md px-2"
+          >
+            Close
+          </button>
         </div>
       </div>
+
       <div id="win" class="hidden fixed top-52">
-        <div class="bg-pink-500 p-4 flex flex-col justify-center items-center rounded-md">
-          <h1 class="text-white/80 font-extrabold text-xl mb-5">Congratulations!</h1>
+        <div
+          class="bg-pink-500 p-4 flex flex-col justify-center items-center rounded-md"
+        >
+          <h1 class="text-white/80 font-extrabold text-xl mb-5">
+            Congratulations!
+          </h1>
           <h1 class="text-white/80 font-extrabold text-3xl mb-5">You Won!!</h1>
-          <button id="closeBtn2" class=" bg-white/80 font-bold text-pink-600 rounded-md px-2 ">Close</button>
+          <button
+            id="closeBtn2"
+            class="bg-white/80 font-bold text-pink-600 rounded-md px-2"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+
+      <div id="error" class="hidden fixed top-52">
+        <div
+          class="bg-pink-500 p-4 flex flex-col justify-center items-center rounded-md"
+        >
+          <h1 class="text-white/80 font-extrabold text-lg mb-5">
+            Please enter the letter!
+          </h1>
+          <button
+            id="closeBtn3"
+            class="bg-white/80 font-bold text-pink-600 rounded-md px-2"
+          >
+            Close
+          </button>
         </div>
       </div>
     </div>
